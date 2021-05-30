@@ -58,9 +58,9 @@
                         </td>
                         <td :style="todo.isCompleted ? 'text-decoration: line-through' : ''">{{todo.content}}</td>
                         <td class="text-center">
-                            <div class="btn-group">
+                            <div >
                                 <button class="btn btn-success btn-sm" v-on:click.prevent="edit(todo.id)"><i
-                                        class="fa fa-pencil"></i></button>
+                                        class="fa fa-pencil"></i></button>&nbsp;
                                 <button class="btn btn-danger btn-sm" v-on:click.prevent="remove(todo.id)"><i
                                         class="fa fa-trash"></i></button>
                             </div>
