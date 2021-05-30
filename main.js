@@ -30,6 +30,7 @@ const app = Vue.createApp({
       const todo = this.todos.find((x) => x.id === id);
       this.validator(todo);
       this.todos = this.todos.filter((x) => x.id !== id);
+      this.$refs["todoElm"].focus();
     },
 
     edit(id) {
