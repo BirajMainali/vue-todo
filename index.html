@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="stylesheet" href="https://bootswatch.com/5/zephyr/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Todo's</title>
+</head>
+<body>
+<div id="app">
+    <div class="card mt-5 mx-auto col-6">
+        <div class="card-header bg-warning">
+            <h6 class="card-title text-dark text-center">
+                Welcome to TODO
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-10">
+                    <div class="form-group">
+                        <input type="text" class="form-control" v-model="todo" ref="todoElm"
+                               v-on:keyup.enter.prevent="add" placeholder=" Portal Route Management ...">
+                    </div>
+                </div>
+                <div class="btn-group col">
+                    <button type="button" class="btn btn-info btn-sm" v-on:click.prevent="add()"><i
+                            class="fas fa-tasks"></i>&nbsp;Add
+                    </button>
+                </div>
+            </div>
+            <div class="card-footer mt-2" v-if="todos.length > 0">
+                <div class="text-end mb-2">
+                    <div class="form-check form-switch" style="float: right">
+                        <label>Task</label>
+                        <input class="form-check-input" type="checkbox" v-model="allCompleted">
+                    </div>
+                </div>
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                    <tr class="bg-warning">
+                        <td>#</td>
+                        <td>Complete</td>
+                        <td class="col-8">Content</td>
+                        <td class="text-center">Action</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="(todo,idx) in todos" :key="idx">
+                        <td>{{idx + 1}}</td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" v-model="todo.isCompleted">
+                            </div>
+                        </td>
+                        <td :style="todo.isCompleted ? 'text-decoration: line-through' : ''">{{todo.content}}</td>
+                        <td class="text-center">
+                            <div class="btn-group">
+                                <button class="btn btn-success btn-sm" v-on:click.prevent="edit(todo.id)"><i
+                                        class="fa fa-pencil"></i></button>
+                                <button class="btn btn-danger btn-sm" v-on:click.prevent="remove(todo.id)"><i
+                                        class="fa fa-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-center mt-3" v-else>
+                <p>
+                    <i class="fa fa-info"></i>
+                    Please add Some todo to continue
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Importing App-->
+<script src="./main.js"></script>
+<!-- Mount App -->
+<script>
+    const mountedApp = app.mount("#app");
+</script>
+<script src="https://kit.fontawesome.com/7d0b4bd6f6.js"></script>
+</body>
+</html>

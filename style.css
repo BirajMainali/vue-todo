@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+* {
+    font-family: 'Roboto Mono', monospace;
+}
+
+body {
+    background-color: navajowhite;
+}
+
+.card {
+    padding: 20px;
+    background-color: azure;
+    border-radius: 20px
+}
+
+.card .card-header {
+    border-radius: 10px;
+}
+
+.card .card-footer {
+    background-color: azure;
+}
+
+.form-control {
+    padding: 6px;
+    border-radius: 10px;
+    background-color: azure;
+}
+
+input {
+    background-color: azure;
+}
+
+.table {
+    font-size: 15px
+}
+
+.form-check-input:hover {
+    cursor: pointer;
+}
