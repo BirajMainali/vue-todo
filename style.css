@@ -5,17 +5,22 @@
 }
 
 body {
-    background-color: navajowhite;
+    background-color: #EBEBEB;
 }
 
 .card {
-    padding: 20px;
     background-color: azure;
     border-radius: 20px
 }
 
 .card .card-header {
+    padding: 30px;
     border-radius: 10px;
+    background-color: #52489C;
+}
+
+.table-bg {
+    background-color: #52489C;
 }
 
 .card .card-footer {
@@ -38,4 +43,10 @@ input {
 
 .form-check-input:hover {
     cursor: pointer;
+}
+
+.editedContent {
+    border: none;
+    border-radius: 7px;
+    background-color: azure;
 }
