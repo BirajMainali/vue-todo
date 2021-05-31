@@ -78,8 +78,6 @@ const app = Vue.createApp({
 
     watch: {
         allCompleted: function (val) {
-            const ask = confirm(`Are you sure to change all todos status ?`);
-            if (!ask) return
             this.todos.forEach((x) => x.isCompleted = val)
         },
         todos: {
@@ -91,6 +89,8 @@ const app = Vue.createApp({
     },
 
     mounted() {
-        this.loadStoreItem();
+        setTimeout(() => {
+            this.loadStoreItem();
+        }, 200);
     },
 });
