@@ -1,10 +1,4 @@
-const IdGenerator = {
-  LastId: 0,
-  Generate() {
-    this.LastId += 1;
-    return this.LastId;
-  },
-};
+
 
 const app = Vue.createApp({
   data() {
@@ -21,7 +15,7 @@ const app = Vue.createApp({
     addTodo() {
       if (this.todo.trim().length === 0) return;
       this.todos.push({
-        id: IdGenerator.Generate(),
+        id: Symbol(),
         content: this.todo,
         isCompleted: this.isCompleted,
         isEditable: this.editable,
@@ -52,7 +46,7 @@ const app = Vue.createApp({
       todo.isEditable = true;
       this.editedContent = todo.content;
       await Vue.nextTick();
-      this.$refs[`editedElm`].focus();
+      this.$refs['editedElm'].focus();
     },
 
     cancelEdit(id) {
