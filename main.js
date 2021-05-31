@@ -27,25 +27,33 @@ const app = Vue.createApp({
                 isEditable: this.editable,
             });
             this.todo = "";
-            this.$refs["todoElm"].focus();
+            this.$refs[`todoElm`].focus();
         },
         removeTodo(id) {
             const todo = this.getTodoById(id);
-            this.validator(todo);
+            if (todo.isCompleted) {
+                const ask = confirm(`Are you sure This task has already been completed`);
+                if (!ask) return;
+            }
             this.todos = this.todos.filter((x) => x.id !== id);
-            this.$refs["todoElm"].focus();
+            this.$refs[`todoElm`].focus();
         },
 
-        enableEdit(id) {
+        async enableEdit(id) {
             const todo = this.getTodoById(id);
-            this.validator(todo);
+            if (todo.isCompleted) {
+                const ask = confirm(`Are you sure This task has already been completed`);
+                if (!ask) return;
+            }
             todo.isEditable = true;
-            this.$refs["editElm"].focus();
+            this.editedContent = todo.content;
+            await Vue.nextTick();
+            this.$refs[`editedElm`].focus();
         },
 
         cancelEdit(id) {
             this.getTodoById(id).isEditable = false;
-            this.$refs["todoElm"].focus();
+            this.$refs[`todoElm`].focus();
         },
         saveChanges(id) {
             const todo = this.getTodoById(id);
@@ -55,30 +63,24 @@ const app = Vue.createApp({
             todo.content = this.editedContent;
             todo.isEditable = false;
             this.editedContent = "";
-            this.$refs["todoElm"].focus();
+            this.$refs[`todoElm`].focus();
         },
         getTodoById(id) {
             return this.todos.find((x) => x.id === id);
         },
-        validator(todo) {
-            if (todo.isCompleted) {
-                const ask = confirm(
-                    `Are you sure This task has already been completed`
-                );
-            }
-        },
         loadStoreItem() {
             if (localStorage.todos) {
                 this.todos = JSON.parse(localStorage.todos);
+                this.todos.forEach((x) => x.isEditable = false);
             }
         },
     },
 
     watch: {
         allCompleted: function (val) {
-            for (let todo of this.todos) {
-                todo.isCompleted = val;
-            }
+            const ask = confirm(`Are you sure to change all todos status ?`);
+            if (!ask) return
+            this.todos.forEach((x) => x.isCompleted = val)
         },
         todos: {
             handler(newTodos) {

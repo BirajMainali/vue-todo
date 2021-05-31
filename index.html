@@ -6,7 +6,8 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 
     <link href="https://bootswatch.com/5/zephyr/bootstrap.min.css" rel="stylesheet">
-    <link rel="icon" class="js-site-favicon" type="image/svg+xml" href="https://e7.pngegg.com/pngimages/268/27/png-clipart-action-item-computer-icons-task-others-miscellaneous-angle.png">
+    <link rel="icon" class="js-site-favicon" type="image/svg+xml"
+          href="https://e7.pngegg.com/pngimages/268/27/png-clipart-action-item-computer-icons-task-others-miscellaneous-angle.png">
     <link href="./style.css" rel="stylesheet">
     <script src="https://unpkg.com/vue@next"></script>
     <title>Todo's</title>
@@ -60,9 +61,10 @@
                         <td :style="todo.isCompleted ? 'text-decoration: line-through' : ''">
                             <span v-if="!todo.isEditable">{{todo.content}}</span>
                             <input class="form-control form-control-sm editedContent" ref="editedElm"
-                                   type="text" v-else
+                                   type="text"
                                    v-model="editedContent"
-                                   v-on:keyup.enter.prevent="saveChanges(todo.id)">
+                                   v-on:keyup.enter.prevent="saveChanges(todo.id)"
+                                   v-else>
 
                         </td>
                         <td>
