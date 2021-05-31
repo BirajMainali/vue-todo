@@ -36,10 +36,10 @@
             </div>
             <div class="card-footer mt-2" v-if="todos">
                 <div class="text-end mb-2">
+
                     <div class="form-check form-switch" style="float: right">
-                        <label>Task</label>
-                        <input class="form-check-input" type="checkbox" v-model="allCompleted"
-                               @change.prevent="completeAll()">
+                        <label for="check-box">Complete all</label>
+                        <input class="form-check-input" id="check-box" type="checkbox" v-model="allCompleted">
                     </div>
                 </div>
                 <table class="table table-striped table-bordered table-hover">
