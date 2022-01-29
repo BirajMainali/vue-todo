@@ -10,7 +10,6 @@ const addTodo = (todoItem) => {
     label: todoItem,
     isCompleted: false,
   });
-  console.log(todoItems.value);
 };
 </script>
 
